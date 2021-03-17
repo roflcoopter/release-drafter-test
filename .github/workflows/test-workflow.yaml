@@ -21,3 +21,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - run: "echo ${{ steps.release_drafter.outputs.id }}"
+      - run: "echo ${{ steps.release_drafter.get_latest_release }}"
