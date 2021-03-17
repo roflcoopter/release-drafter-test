@@ -26,7 +26,7 @@ jobs:
       - run: "echo ${{ fromJson(steps.get_latest_release.outputs.data)[0] }}"
      
       - name: create response.json
-        run: echo "${{ steps.get_latest_release.outputs.data }}" > response.json
+        run: echo '${{ steps.get_latest_release.outputs.data }}' > response.json
       - name: read response.json
         run: cat response.json
       
