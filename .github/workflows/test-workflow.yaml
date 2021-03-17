@@ -1,0 +1,23 @@
+name: Test workflow
+
+# yamllint disable-line rule:truthy
+on:
+  workflow_dispatch:
+  
+jobs:
+  update_release_draft:
+    runs-on: ubuntu-latest
+    steps:
+      - id: release_drafter
+        run: echo "::set-output name=id::1.0.1"
+
+      - uses: octokit/request-action@v2.x
+        id: get_latest_release
+        with:
+          route: GET /repos/{owner}/{repo}/releases
+          owner: roflcoopter
+          repo: release-drafter-test
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - run: "echo ${{ steps.release_drafter.outputs.id }}"
