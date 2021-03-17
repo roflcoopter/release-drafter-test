@@ -48,7 +48,9 @@ version-resolver:
       - "documentation"
       - "fix"
       - "schema"
+      - "hotfix"
   default: patch
+prerelease: true
 template: |
   ## What’s Changed
 
