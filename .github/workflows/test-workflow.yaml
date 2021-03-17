@@ -24,8 +24,14 @@ jobs:
       - run: "echo ${{ steps.release_drafter.outputs.id }}"
       - run: "echo ${{ steps.get_latest_release.data }}"
       - run: "echo ${{ fromJson(steps.get_latest_release.outputs.data)[0] }}"
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
-      - run: echo ${{ steps.get_latest_release.outputs.data }} | python -c "import sys, json; print(json.load(sys.stdin)[0])"
+     
+      - name: create response.json
+        run: echo ${{ steps.get_latest_release.outputs.data }} > response.json
+      - name: read response.json
+        run: cat response.json
+      
+#      - uses: actions/checkout@v2
+#      - uses: actions/setup-python@v2
+#        with:
+#          python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+#      - run: echo ${{ steps.get_latest_release.outputs.data }} | python -c "import sys, json; print(json.load(sys.stdin)[0])"
