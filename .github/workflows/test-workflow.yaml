@@ -7,6 +7,8 @@ on:
 jobs:
   update_release_draft:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.get_latest_release.outputs.data }}
     steps:
       - id: release_drafter
         run: echo "::set-output name=id::1.0.1"
@@ -23,3 +25,10 @@ jobs:
       - run: "echo ${{ steps.release_drafter.outputs.id }}"
       - run: "echo ${{ steps.get_latest_release.data }}"
       - run: "echo ${{ fromJson(steps.get_latest_release.outputs.data)[0] }}"
+  job2:
+    needs: update_release_draft
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{fromJSON(needs.update_release_draft.outputs.matrix)}}
+    steps:
+    - run: "echo ${{ matrix }}"
