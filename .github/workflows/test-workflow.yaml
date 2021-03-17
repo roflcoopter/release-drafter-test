@@ -11,7 +11,7 @@ jobs:
       - id: release_drafter
         run: echo "::set-output name=id::1.0.1"
 
-      - uses: octokit/request-action@v2.x
+      - uses: octokit/request-action@v2.0.2
         id: get_latest_release
         with:
           route: GET /repos/{owner}/{repo}/releases
@@ -21,4 +21,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - run: "echo ${{ steps.release_drafter.outputs.id }}"
-      - run: "echo ${{ steps.release_drafter.get_latest_release }}"
+      - run: "echo ${{ steps.release_drafter.get_latest_release.data }}"
