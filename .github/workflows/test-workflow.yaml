@@ -30,8 +30,12 @@ jobs:
       - name: read response.json
         run: cat response.json
       
-#      - uses: actions/checkout@v2
-#      - uses: actions/setup-python@v2
-#        with:
-#          python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
-#      - run: echo ${{ steps.get_latest_release.outputs.data }} | python -c "import sys, json; print(json.load(sys.stdin)[0])"
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+      - uses: jannekem/run-python-script-action@v1
+        with:
+          script: |
+            import os
+            print("Directory contents:")
+            for f in os.listdir():
+                print(f)
