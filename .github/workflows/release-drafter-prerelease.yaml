@@ -15,10 +15,12 @@ jobs:
           config-name: release-drafter-prerelease.yaml
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: update release
-        id: update_release
-        uses: tubone24/update_release@v1.1.0
+      - uses: octokit/request-action@v2.x
+        id: get_latest_release
+        with:
+          route: GET /repos/{owner}/{repo}/releases
+          owner: octokit
+          repo: request-action
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          release_name: test_name
+      - run: "echo latest release: ${{ steps.get_latest_release.outputs.data[0] }}"
