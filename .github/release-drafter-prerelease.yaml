@@ -51,6 +51,7 @@ version-resolver:
       - "hotfix"
   default: patch
 prerelease: true
+commitish: dev
 template: |
   ## What’s Changed
 
