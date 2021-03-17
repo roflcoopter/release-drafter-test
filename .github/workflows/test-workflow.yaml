@@ -24,18 +24,11 @@ jobs:
       - run: "echo ${{ steps.release_drafter.outputs.id }}"
       - run: "echo ${{ steps.get_latest_release.data }}"
       - run: "echo ${{ fromJson(steps.get_latest_release.outputs.data)[0] }}"
-     
-      - name: create response.json
-        run: echo '${{ steps.get_latest_release.outputs.data }}' > response.json
-      - name: read response.json
-        run: cat response.json
-      
-      - uses: actions/checkout@v2
+
       - uses: actions/setup-python@v2
-      - uses: jannekem/run-python-script-action@v1
-        with:
-          script: |
-            import os
-            print("Directory contents:")
-            for f in os.listdir():
-                print(f)
+      - uses: actions/checkout@v2
+      - name: create response.json
+        run: |
+          echo '${{ steps.get_latest_release.outputs.data }}' > response.json
+          
+          python3 ./.github/workflows/calculate_beta_release.py
