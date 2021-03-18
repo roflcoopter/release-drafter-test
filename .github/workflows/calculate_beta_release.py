@@ -19,4 +19,5 @@ if latest_release["prerelease"]:
 print(f"Next beta number is {next_beta}")
 
 tag_name = f"{draft['tag_name']}b{next_beta}"
-print("::set-env name=RELEASE_ID::{}".format(draft["id"]))
+#print("::set-env name=RELEASE_ID::{}".format(draft["id"]))
+print(f'echo "release_id={draft["id"]}" >> $GITHUB_ENV')
