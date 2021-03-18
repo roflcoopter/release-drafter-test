@@ -34,3 +34,15 @@ jobs:
           echo '${{ steps.get_latest_release.outputs.data }}' > response.json
           
           python3 ./.github/workflows/calculate_beta_release.py
+
+      - uses: octokit/request-action@v2.x
+        id: update_check_run
+        with:
+          route: PATCH /repos/{owner}/{repo}/releases/{release_id}
+          owner: roflcoopter
+          repo: release-drafter-test
+          release_id: ${{ env.VISERON_RELEASE_ID }}
+          tag_name: ${{ env.VISERON_TAG_NAME }}
+          name: ${{ env.VISERON_TAG_NAME }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
