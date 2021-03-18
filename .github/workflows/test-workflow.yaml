@@ -21,16 +21,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
-      - run: "echo ${{ steps.release_drafter.outputs.id }}"
-      - run: "echo ${{ steps.get_latest_release.data }}"
-      - run: "echo ${{ fromJson(steps.get_latest_release.outputs.data)[0] }}"
+      #- run: "echo ${{ steps.release_drafter.outputs.id }}"
+      #- run: "echo ${{ steps.get_latest_release.data }}"
+      #- run: "echo ${{ fromJson(steps.get_latest_release.outputs.data)[0] }}"
 
       - uses: actions/setup-python@v2
       - uses: actions/checkout@v2
-      - name: create response.json
+      - id: release_data
+        name: create response.json
         run: |
           echo '${{ steps.get_latest_release.outputs.data }}' > response.json
           
           python3 ./.github/workflows/calculate_beta_release.py
-      - run: "echo ${{ steps.release_drafter.outputs.release_id }}"
+      - run: "echo ${{ steps.release_data.outputs.release_id }}"
       - run: echo "${{ env.release_id }}"
