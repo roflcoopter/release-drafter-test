@@ -1,5 +1,6 @@
 import json
 import re
+import os
 
 f = open("response.json")
 releases = json.load(f)
@@ -19,5 +20,7 @@ if latest_release["prerelease"]:
 print(f"Next beta number is {next_beta}")
 
 tag_name = f"{draft['tag_name']}b{next_beta}"
-#print("::set-env name=RELEASE_ID::{}".format(draft["id"]))
-print(f'echo "release_id={draft["id"]}" >> $GITHUB_ENV')
+print(os.getenv("GITHUB_ENV"))
+
+# print("::set-output name=release_id::{}".format(draft["id"]))
+# print(f'echo "release_id={draft["id"]}" >> $GITHUB_ENV')
