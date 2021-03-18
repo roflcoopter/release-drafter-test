@@ -32,4 +32,4 @@ jobs:
           echo '${{ steps.get_latest_release.outputs.data }}' > response.json
           
           python3 ./.github/workflows/calculate_beta_release.py
-      - run: "echo ${{ steps.release_drafter.outputs.RELEASE_ID }}"
+      - run: "echo ${{ steps.release_drafter.outputs.release_id }}"
