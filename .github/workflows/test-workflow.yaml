@@ -8,8 +8,8 @@ jobs:
   update_release_draft:
     runs-on: ubuntu-latest
     steps:
-      - id: release_drafter
-        run: echo "::set-output name=id::1.0.1"
+      #- id: release_drafter
+      #  run: echo "::set-output name=id::1.0.1"
 
       - uses: octokit/request-action@v2.0.2
         id: get_latest_release
@@ -33,13 +33,11 @@ jobs:
           echo '${{ steps.get_latest_release.outputs.data }}' > response.json
           
           python3 ./.github/workflows/calculate_beta_release.py
-      - run: |
-          echo ${{ steps.release_data.outputs.release_id }}
-      - run: "echo ${{ steps.release_data.outputs.release_id }}"
+      #- run: |
+      #    echo ${{ steps.release_data.outputs.release_id }}
+      #- run: "echo ${{ steps.release_data.outputs.release_id }}"
       - run: |
           echo ${{ env.release_id }}
-      - run: |
-          echo "${{ env.release_id }}"
       - name: "Show environment variables"
         run: |
           env
