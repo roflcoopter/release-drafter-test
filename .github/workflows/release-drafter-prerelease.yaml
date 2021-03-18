@@ -26,15 +26,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - uses: octokit/request-action@v2.0.2
-        id: get_latest_release
-        with:
-          route: GET /repos/{owner}/{repo}/releases
-          owner: roflcoopter
-          repo: release-drafter-test
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - uses: actions/setup-python@v2
       - uses: actions/checkout@v2
       - id: release_data
