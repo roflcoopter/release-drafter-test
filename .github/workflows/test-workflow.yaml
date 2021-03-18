@@ -33,4 +33,4 @@ jobs:
           
           python3 ./.github/workflows/calculate_beta_release.py
       - run: "echo ${{ steps.release_drafter.outputs.release_id }}"
-      - run: echo "${{ env.release_id }}
+      - run: echo "${{ env.release_id }}"
