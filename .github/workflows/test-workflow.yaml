@@ -40,9 +40,15 @@ jobs:
           echo ${{ env.release_id }}
       - run: |
           echo "${{ env.release_id }}"
+      - name: "Show environment variables"
+        run: |
+          env
 
   show_release_id:
     runs-on: ubuntu-latest
     steps:
       - run: |
           echo "${{ env.release_id }}"
+      - name: "Show environment variables"
+        run: |
+          env
