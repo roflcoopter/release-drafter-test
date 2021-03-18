@@ -27,9 +27,8 @@ print(f"Next beta number is {next_beta}")
 
 tag_name = f"{draft['tag_name']}b{next_beta}"
 
-print(tag_name)
+print(f"New tag name: {tag_name}")
 
-sys.exit()
 with open(str(os.getenv("GITHUB_ENV")), "a") as f:
     f.write(f'VISERON_RELEASE_ID={draft["id"]}\n')
     f.write(f"VISERON_TAG_NAME={tag_name}\n")
