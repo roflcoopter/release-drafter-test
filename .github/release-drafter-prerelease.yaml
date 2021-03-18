@@ -28,6 +28,7 @@ exclude-labels:
   - "wontfix"
   - "dependencies"
 change-template: "- $TITLE @$AUTHOR (#$NUMBER)"
+version-template: "$MAJOR.$MINOR.0"
 version-resolver:
   major:
     labels:
@@ -38,8 +39,8 @@ version-resolver:
       - "minor"
       - "feature"
       - "enhancement"
-  patch:
-    labels:
+  #patch:
+  #  labels:
       - "patch"
       - "bug"
       - "bugfix"
@@ -49,7 +50,7 @@ version-resolver:
       - "fix"
       - "schema"
       - "hotfix"
-  default: patch
+  default: minor
 prerelease: true
 commitish: dev
 template: |
