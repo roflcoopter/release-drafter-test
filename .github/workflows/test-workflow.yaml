@@ -44,11 +44,13 @@ jobs:
         run: |
           env
 
-  show_release_id:
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo "${{ env.release_id }}"
-      - name: "Show environment variables"
-        run: |
-          env
+      - uses: octokit/request-action@v2.x
+        id: update_check_run
+        with:
+          route: PATCH /repos/{owner}/{repo}/releases/{release_id}
+          owner: roflcoopter
+          repo: release-drafter-test
+          release_id: ${{ env.VISERON_RELEASE_ID }}
+          tag_name: ${{ env.VISERON_TAG_NAME }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
