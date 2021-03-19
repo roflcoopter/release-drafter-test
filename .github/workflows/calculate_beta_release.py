@@ -21,7 +21,14 @@ if latest_release["prerelease"]:
     match = re.search(r"b(\d+)", latest_release["tag_name"])
     if match:
         print("Found match!")
-        next_beta = int(match.group(1)) + 1
+        print(match.group(0))
+
+        tag_search = re.match("(.*?)b", latest_release["tag_name"])
+        if tag_search:
+            print(tag_search.group(1))
+            if tag_search.group(1) == draft["tag_name"]:
+                print("Same version, incrementing beta number")
+                next_beta = int(match.group(1)) + 1
 
 print(f"Next beta number is {next_beta}")
 
@@ -32,7 +39,3 @@ print(f"New tag name: {tag_name}")
 with open(str(os.getenv("GITHUB_ENV")), "a") as f:
     f.write(f'VISERON_RELEASE_ID={draft["id"]}\n')
     f.write(f"VISERON_TAG_NAME={tag_name}\n")
-
-
-# print("::set-output name=release_id::{}".format(draft["id"]))
-# print(f'echo "release_id={draft["id"]}" >> $GITHUB_ENV')
