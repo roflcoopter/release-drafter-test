@@ -2,9 +2,11 @@ name: Pre-Release Drafter
 
 # yamllint disable-line rule:truthy
 on:
-  push:
-    branches:
-      - master
+  workflow_dispatch:
+    inputs:
+      nextVersion:
+        description: 'Version to be drafted'     
+        required: true
   
 jobs:
   update_release_draft:
@@ -13,5 +15,7 @@ jobs:
       - uses: release-drafter/release-drafter@v5
         with:
           config-name: release-drafter.yaml
+          tag: ${{ github.event.inputs.nextVersion }}
+          version: ${{ github.event.inputs.nextVersion }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
