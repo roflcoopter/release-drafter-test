@@ -2,9 +2,9 @@ name: Pre-Release Drafter
 
 # yamllint disable-line rule:truthy
 on:
-#  push:
-#    branches:
-#      - dev
+  push:
+    branches:
+      - dev
   workflow_dispatch:
     inputs:
       nextVersion:
