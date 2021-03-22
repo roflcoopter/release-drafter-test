@@ -44,7 +44,6 @@ version-resolver:
       - "dependencies"
       - "documentation"
       - "fix"
-      - "schema"
       - "hotfix"
   default: minor
 prerelease: false
