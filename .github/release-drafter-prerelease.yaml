@@ -4,7 +4,7 @@ categories:
   - title: "🚨 Breaking Changes"
     labels:
       - "breaking-change"
-  - title: "🚀 Features"
+  - title: "🚀 Features & Changes"
     labels:
       - "feature"
       - "enhancement"
@@ -13,10 +13,6 @@ categories:
       - "fix"
       - "bugfix"
       - "bug"
-  - title: "🧬 YAML Schema Updates"
-    labels:
-      - "schema"
-      - "yaml"
   - title: "📚 Documentation"
     labels:
       - "documentation"
@@ -48,7 +44,6 @@ version-resolver:
       - "dependencies"
       - "documentation"
       - "fix"
-      - "schema"
       - "hotfix"
   default: minor
 prerelease: true
