@@ -1,4 +1,4 @@
-name: Pre-Release Drafter
+name: Release Drafter
 
 # yamllint disable-line rule:truthy
 on:
