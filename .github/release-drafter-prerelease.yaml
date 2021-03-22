@@ -48,7 +48,7 @@ version-resolver:
   default: minor
 prerelease: true
 commitish: dev
-filter-by-commitish: true
+filter-by-commitish: false
 template: |
   ## What’s Changed
 
